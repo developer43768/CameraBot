@@ -1,6 +1,6 @@
 import cv2
 import mediapipe as mp
-from math import dist
+import math
 
 class FaceDetector:
     def __init__(self, min_detection_confidence=0.5):
@@ -53,8 +53,8 @@ class FaceDetector:
 
                 faceArea = abs((fp2X - fp1minX) * (fp2Y - fp1minY))
                 faceArea /= 100
-
-                faceDest = dist((midFaceX,midFaceY),(imageMidX,imageMidY))
+                
+                faceDest = math.sqrt(((midFaceX-imageMidX)*(midFaceX-imageMidX))+((midFaceY-imageMidY)*(midFaceY-imageMidY)))
                 faceDatas = [faceDest,faceArea]
                 
                 cv2.circle(image,(midFaceX,midFaceY),10,(0,0,255),-1) # Middle point of the face
