@@ -2,6 +2,7 @@ import cv2
 import mediapipe as mp
 import math
 
+
 class FaceDetector:
     def __init__(self, min_detection_confidence=0.5):
         self.min_detection_confidence = min_detection_confidence
@@ -53,7 +54,7 @@ class FaceDetector:
 
                 faceArea = abs((fp2X - fp1minX) * (fp2Y - fp1minY))
                 faceArea /= 100
-                
+
                 faceDest = math.sqrt(((midFaceX-imageMidX)*(midFaceX-imageMidX))+((midFaceY-imageMidY)*(midFaceY-imageMidY)))
                 faceDatas = [faceDest,faceArea]
                 
