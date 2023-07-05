@@ -1,6 +1,6 @@
-#import firebase_admin
-#from firebase_admin import db,credentials
-import pyrebase as pb
+import firebase_admin
+from firebase_admin import db,credentials
+#import pyrebase as pb
 
 
 config = {
@@ -17,23 +17,23 @@ config = {
 
 class Database:
     def __init__(self):
-        #self.cred = credentials.Certificate('camerabotDatabase.json')
-        #firebase_admin.initialize_app(self.cred, {'databaseURL' : "https://camerabot-c643f-default-rtdb.firebaseio.com/"})
-        #self.ref = db.reference()
+        self.cred = credentials.Certificate('camerabotDatabase.json')
+        firebase_admin.initialize_app(self.cred, {'databaseURL' : "https://camerabot-c643f-default-rtdb.firebaseio.com/"})
+        self.ref = db.reference()
         #-----------------------
-
+        """
         self.firebase = pb.initialize_app(config)
         self.storage = self.firebase.storage()
         self.database = self.firebase.database()
-
+        """
         #Database datas
         self.connectButton = 0
         self.robotOnline = 0
         self.robotMode = 0
 
     def GetDatabase(self):
-        #data = self.ref.get()
-        data = self.database.get()
+        data = self.ref.get()
+        #data = self.database.get()
         print(data)
         self.connectButton = data['connectButton']
         self.robotOnline = data['robotConnected']
@@ -41,7 +41,7 @@ class Database:
 
 
     def SetData(self,id,data):
-        """
+        
         self.ref.update({
             id:data
         })
@@ -49,7 +49,7 @@ class Database:
         self.database.update({
             id:data
         })
-
+        """
     def ConnectionControl(self):
         if(self.connectButton == "1"):
             self.robotOnline = 1
